@@ -42,7 +42,10 @@ const CountUpOnView = ({ target = 10000, duration = 1000, className = "" }) => {
   }, [hasStarted, target, duration]);
 
   return (
-    <div ref={ref} className={`text-8xl font-bold  ${className}`}>
+    <div
+      ref={ref}
+      className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold ${className}`}
+    >
       {count.toLocaleString()}
     </div>
   );
