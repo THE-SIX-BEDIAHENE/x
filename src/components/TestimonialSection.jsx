@@ -86,7 +86,7 @@ const TestimonialSection = () => {
   };
 
   return (
-    <section className="w-full bg-white py-24 px-4 sm:px-8 md:px-16 lg:px-24">
+    <section className="w-full bg-white py-15 px-4 sm:px-8 md:px-16 lg:px-24">
       <div className="text-center mb-12 max-w-4xl mx-auto">
         <p className="text-[#2E3E99] font-bold text-4xl capitalize mb-2">
           Testimonials
