@@ -1,0 +1,190 @@
+{
+  "About": "À propos",
+  "Projects": "Projets",
+  "News": "Actualités",
+  "Contact": "Contact",
+  "homepage": {
+    "welcome": "Bienvenue chez",
+    "hero_description": "Combiner la technologie et la tradition pour transformer l’éducation africaine. Chez Steady/X, nous donnons aux apprenants et aux enseignants les outils, formations et connaissances pour un avenir assuré.",
+    "explore_projects": "Explorer les projets",
+    "partner_with_us": "Devenez partenaire",
+    "vision_title": "Vision",
+    "vision_description": "Chez Steady/X, nous envisageons un processus éducatif équilibré qui favorise une mentalité centrée — permettant aux individus d’atteindre leurs objectifs avec clarté et excellence.",
+    "mission_title": "Mission",
+    "mission_description": "Notre mission est d’éduquer de manière holistique les individus en Afrique, en combinant outils traditionnels et technologiques pour bâtir la confiance, la pensée critique et la préparation au monde réel.",
+    "impact_metrics": "Chiffres Clés",
+    "students_reached": "Élèves touchés",
+    "years_experience": "Années d’expérience collective",
+    "our_partners": "Nos partenaires"
+  },
+  "about": {
+    "title": "À propos de Steady/X",
+    "mission_vision": {
+      "heading": "Mission et Vision",
+      "paragraph": "Chez Steady/X, nous imaginons un processus éducatif centré qui permet aux individus d’atteindre leurs objectifs avec excellence.\nNotre mission est d’éduquer de manière holistique les esprits à travers l’Afrique, en utilisant la technologie pour offrir l’accès, la confiance et la préparation au monde réel."
+    },
+    "core_values": {
+      "heading": "Valeurs fondamentales",
+      "description": "Ancrées dans l’héritage africain, nos valeurs sont représentées par les symboles traditionnels Adinkra — icônes intemporelles de sagesse, de but et de force culturelle.",
+      "dedication": {
+        "title": "Dévouement",
+        "description": "Représenté par Eban, symbolisant la protection, la sécurité et l’engagement inébranlable envers la communauté et la mission."
+      },
+      "dynamism": {
+        "title": "Dynamisme",
+        "description": "Illustré par Nkyinkyim, ce symbole célèbre le mouvement, l’initiative et la capacité d’adaptation."
+      },
+      "integrity": {
+        "title": "Intégrité",
+        "description": "Représentée par Fawohodie, symbolisant la liberté et la droiture morale — un engagement envers la vérité et la responsabilité."
+      }
+    },
+    "identity": {
+      "heading": "Notre Identité",
+      "colors": {
+        "red": "Rouge : Sang de l’Agneau (Jésus)",
+        "blue": "Bleu : Santé mentale et flux (océan de savoir)",
+        "purple": "Violet : Royauté",
+        "white": "Blanc : Excellence vibrante et clarté",
+        "black": "Noir : Fondements pour l’avenir"
+      }
+    },
+    "projects": {
+      "heading": "Projets phares",
+      "cape_coast": {
+        "title": "Cape Coast Green City",
+        "description": "Module éducatif lancé dans le cadre de l’initiative Green City du Ghana.",
+        "learn_more": "En savoir plus",
+        "more_details": "Plus de détails"
+      },
+      "tamale": {
+        "title": "Village du Roi de Tamale",
+        "description": "Programme parascolaire avec Mathématiques, Sciences, Géographie, Anglais, Codage et Robotique. Proposé en présentiel et via notre LMS.",
+        "more_details": "Plus de détails"
+      }
+    },
+    "team": {
+      "heading": "Notre Équipe",
+      "kwame": {
+        "role": "Fondateur & PDG",
+        "bio": "Kwame est un leader visionnaire œuvrant pour la réforme éducative et l’accès à l’apprentissage numérique à travers l’Afrique."
+      },
+      "akosua": {
+        "role": "Directrice de programme",
+        "bio": "Akosua veille à un contenu localement pertinent et compétitif à l’échelle mondiale."
+      },
+      "michael": {
+        "role": "Responsable technique",
+        "bio": "Michael relie la technologie moderne à l’éducation, menant des innovations sur notre LMS et nos plateformes numériques."
+      }
+    },
+    "faqs": {
+      "heading": "FAQs",
+      "list": [
+        {
+          "question": "Que signifie Steady/X ?",
+          "answer": "Steady/X représente une base en Sciences, Technologie, Ingénierie, Arts, et un facteur différenciateur unique (DY/DX) qui valorise l’individualité."
+        },
+        {
+          "question": "Comment Steady/X soutient-il l’éducation ?",
+          "answer": "Nous fournissons des appareils, du contenu sélectionné, des formations pour enseignants et des réseaux éducatifs pour un apprentissage holistique en Afrique."
+        },
+        {
+          "question": "Quelles tranches d’âge servez-vous ?",
+          "answer": "Nous desservons un large éventail — des élèves du primaire aux étudiants du supérieur, ainsi que des programmes de développement des enseignants."
+        }
+      ]
+    }
+  }, "nav": {
+    "Home": "Accueil",
+    "About": "À propos",
+    "Projects": "Projets",
+    "Contact": "Contact",
+    "News": "Actualités"
+  },
+  "footer": {
+    "address": "N°6 First Central Link, Madina, Accra.",
+    "email": "info@steadyx.org"
+  }, "testimonials": {
+    "title": "Témoignages",
+    "subtitle": "Voici la valeur que nous avons apportée à nos apprenants.",
+    "list": [
+      {
+        "name": "Grace",
+        "quote": "Steady/X a comblé le fossé entre tradition et innovation. Nos élèves codent maintenant et développent des solutions en toute confiance !",
+        "role": "Emily Dawson, Directrice d’école",
+        "image": "https://plus.unsplash.com/premium_photo-1664267832242-cc73a2fa4903?w=500&auto=format&fit=crop&q=60"
+      },
+      {
+        "name": "Kwame",
+        "quote": "La formation pour les enseignants était complète et facile à mettre en œuvre. Nous avons immédiatement constaté une amélioration de l'engagement.",
+        "role": "Kwame Ofori, Consultant en éducation",
+        "image": "https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?w=500&auto=format&fit=crop&q=60"
+      },  {
+        "name": "Grace",
+        "quote": "Steady/X a comblé le fossé entre tradition et innovation. Nos élèves codent maintenant et développent des solutions en toute confiance !",
+        "role": "Emily Dawson, Directrice d’école",
+        "image": "https://plus.unsplash.com/premium_photo-1664267832242-cc73a2fa4903?w=500&auto=format&fit=crop&q=60"
+      },
+      {
+        "name": "Kwame",
+        "quote": "La formation pour les enseignants était complète et facile à mettre en œuvre. Nous avons immédiatement constaté une amélioration de l'engagement.",
+        "role": "Kwame Ofori, Consultant en éducation",
+        "image": "https://images.unsplash.com/photo-1590080876273-1e9f74a4f8e5?auto=format&fit=crop&w=600&q=80"
+      }
+    ]
+  }, "news": {
+    "title": "Actualités",
+    "subtitle": "Découvrez les perspectives avec nous",
+    "description": "Restez informé des dernières tendances, idées et stratégies pour stimuler l’innovation et la croissance des entreprises.",
+    "articles": [
+      {
+        "category": "Actualité",
+        "title": "Les formateurs félicitent Mamdev Ltd & Steady/X pour la formation en TIC"
+      },
+      {
+        "category": "Actualité",
+        "title": "Cape Coast Green City : Le module éducatif démarre"
+      },
+      {
+        "category": "Actualité",
+        "title": "Steady/X reconnu pour ses efforts en matière de formation TIC"
+      },
+      {
+        "category": "Blog",
+        "title": "Formation en ligne avec TopEdu & Steady/X"
+      },
+      {
+        "category": "Actualité",
+        "title": "Lancement du projet Cape Coast Green City"
+      }
+    ]
+  }, "contact": {
+    "title": "Contactez-nous",
+    "form": {
+      "name": "Nom",
+      "email": "E-mail",
+      "message": "Message",
+      "sendButton": "Envoyer le message"
+    }
+  },"projects": {
+    "pageTitle": "Nos Projets",
+    "learnMore": "En savoir plus",
+    "capeCoast": {
+      "title": "Projet Cape Coast Green City",
+      "description": "En collaboration avec des parties prenantes nationales et internationales, Steady/X soutient l'initiative Cape Coast Green City en fournissant un module éducatif intégrant des solutions d'apprentissage intelligentes dans le développement de la première ville verte intelligente d'Afrique."
+    },
+    "kingsVillage": {
+      "title": "Intervention du King’s Village à Tamale",
+      "description": "En partenariat avec l'école King’s Village, cette initiative propose des programmes extrascolaires personnalisés pour renforcer la compréhension des élèves dans les matières de base. Elle comprend un apprentissage hybride (présentiel + en ligne) et une introduction précoce à la robotique et au codage via le LMS de Steady/X."
+    },
+    "ais": {
+      "title": "École virtuelle AIS",
+      "description": "AIS est une école virtuelle complète conçue pour les apprenants au Ghana et au-delà, offrant un accès à des salles de classe numériques, des enseignants certifiés et un suivi des performances dans un environnement sûr et engageant."
+    },
+    "jsmq": {
+      "title": "Concours Junior de Sciences et Mathématiques (JSMQ)",
+      "description": "Steady/X soutient fièrement le JSMQ, célébrant les jeunes esprits africains dans les STIM. Des tablettes intelligentes ont été offertes aux gagnants pour encourager l'apprentissage continu."
+    }
+  }
+}

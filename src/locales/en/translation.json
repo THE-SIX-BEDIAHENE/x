@@ -1,0 +1,186 @@
+{
+  "homepage": {
+    "welcome": "Welcome to",
+    "hero_description": "Bridging technology and tradition to reshape African education. At Steady/X, we empower learners and educators with tools, training, and knowledge for a confident, future-ready generation.",
+    "explore_projects": "Explore Projects",
+    "partner_with_us": "Partner With Us",
+    "vision_title": "Vision",
+    "vision_description": "At Steady/X, we envision a well-grounded educational process that fosters a centered mindset—empowering individuals to achieve their life objectives with clarity and excellence.",
+    "mission_title": "Mission",
+    "mission_description": "Our mission is to holistically educate individuals across Africa, combining traditional and technological tools to build confidence, critical thinking, and real-world readiness in every learner.",
+    "impact_metrics": "Impact Metrics",
+    "students_reached": "Students Reached",
+    "years_experience": "Years of Collective Experience",
+    "our_partners": "Our Partners"
+  },
+  "about": {
+    "title": "About Us",
+    "mission_vision": {
+      "paragraph": "We are dedicated to bridging the gap between traditional education and modern technology, empowering African learners through innovative and inclusive educational solutions."
+    },
+    "core_values": {
+      "heading": "Our Core Values",
+      "description": "These values shape our culture and guide our behavior.",
+      "dedication": {
+        "title": "Dedication",
+        "description": "Total commitment to the cause of transforming education in Africa."
+      },
+      "dynamism": {
+        "title": "Dynamism",
+        "description": "We are agile, adaptable, and responsive to the changing needs of education and technology."
+      },
+      "integrity": {
+        "title": "Integrity",
+        "description": "We act with honesty, responsibility, and transparency in all our dealings."
+      }
+    },
+    "identity": {
+      "heading": "Color Identity",
+      "colors": {
+        "red": "Red symbolizes passion and strength of purpose.",
+        "blue": "Blue represents trust, intelligence, and wisdom.",
+        "purple": "Purple signifies creativity and innovation.",
+        "white": "White conveys clarity, purity, and openness.",
+        "black": "Black symbolizes our deep connection to Africa."
+      }
+    },
+    "projects": {
+      "heading": "Featured Projects",
+      "cape_coast": {
+        "title": "Cape Coast Green City Project",
+        "description": "We support the 10 billion dollar Cape Coast Green City initiative by integrating innovative educational solutions.",
+        "learn_more": "Learn more",
+        "more_details": "More Project Details"
+      },
+      "tamale": {
+        "title": "Tamale King's Village",
+        "description": "This initiative focuses on providing inclusive and smart educational systems in the northern region of Ghana.",
+        "more_details": "More Project Details"
+      }
+    },
+    "team": {
+      "heading": "Meet Our Team",
+      "kwame": {
+        "role": "Director of Operations",
+        "bio": "Kwame leads our operations and ensures seamless execution of our initiatives."
+      },
+      "akosua": {
+        "role": "Head of Research",
+        "bio": "Akosua drives innovation through in-depth educational research and strategy."
+      },
+      "michael": {
+        "role": "Technical Lead",
+        "bio": "Michael oversees the development and integration of our tech solutions."
+      }
+    },
+    "faqs": {
+      "heading": "Frequently Asked Questions",
+      "list": [
+        {
+          "question": "What is Steady/X?",
+          "answer": "Steady/X is an Edu-Tech organization aiming to bridge traditional education with technology in Africa."
+        },
+        {
+          "question": "How can I partner with Steady/X?",
+          "answer": "Please visit our Contact page to explore partnership opportunities."
+        },
+        {
+          "question": "Where are your current projects?",
+          "answer": "Our major projects are in Cape Coast and Tamale, Ghana."
+        }
+      ]
+    }
+  },
+  "nav": {
+    "Home": "Home",
+    "About": "About",
+    "Projects": "Projects",
+    "Contact": "Contact",
+    "News": "News"
+  },
+  "footer": {
+    "address": "No.6 First Central Link, Madina, Accra.",
+    "email": "info@steadyx.org"
+  },"testimonials": {
+    "title": "Testimonials",
+    "subtitle": "Here’s the value we’ve brought to our learners.",
+    "list": [
+      {
+        "name": "Grace",
+        "quote": "Steady/X has bridged the gap between tradition and innovation. Our students are now coding and building solutions confidently!",
+        "role": "Emily Dawson, Headteacher",
+        "image": "https://plus.unsplash.com/premium_photo-1664267832242-cc73a2fa4903?w=500&auto=format&fit=crop&q=60"
+      },
+      {
+        "name": "Kwame",
+        "quote": "The training for teachers was comprehensive and easy to implement. We saw improvements in engagement right away.",
+        "role": "Kwame Ofori, Education Consultant",
+        "image": "https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?w=500&auto=format&fit=crop&q=60"
+      }, {
+        "name": "Grace",
+        "quote": "Steady/X has bridged the gap between tradition and innovation. Our students are now coding and building solutions confidently!",
+        "role": "Emily Dawson, Headteacher",
+        "image": "https://plus.unsplash.com/premium_photo-1664267832242-cc73a2fa4903?w=500&auto=format&fit=crop&q=60"
+      },
+      {
+        "name": "Kwame",
+        "quote": "The training for teachers was comprehensive and easy to implement. We saw improvements in engagement right away.",
+        "role": "Kwame Ofori, Education Consultant",
+        "image": "https://images.unsplash.com/photo-1590080876273-1e9f74a4f8e5?auto=format&fit=crop&w=600&q=80"
+      }
+    ]
+  },"news": {
+    "title": "News",
+    "subtitle": "Unlock Insights with Us",
+    "description": "Stay informed with the latest trends, insights, and strategies to drive innovation and business growth.",
+    "articles": [
+      {
+        "category": "News",
+        "title": "Tutors Laud Mamdev Ltd & Steady/X for ICT Training"
+      },
+      {
+        "category": "News",
+        "title": "Cape Coast Green City: Education Module Takes Off"
+      },
+      {
+        "category": "News",
+        "title": "Steady/X Recognized for ICT Training Efforts"
+      },
+      {
+        "category": "Blog",
+        "title": "Online Training with TopEdu & Steady/X"
+      },
+      {
+        "category": "News",
+        "title": "Cape Coast Green City Project Launched"
+      }
+    ]
+  },"contact": {
+    "title": "Contact Us",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "sendButton": "Send Message"
+    }
+  },"projects": {
+    "pageTitle": "Our Projects",
+    "learnMore": "Learn more",
+    "capeCoast": {
+      "title": "Cape Coast Green City Project",
+      "description": "In collaboration with national and international stakeholders, Steady/X is supporting the Cape Coast Green City Initiative by delivering an education module that integrates smart learning solutions into the development of Africa’s first smart green city."
+    },
+    "kingsVillage": {
+      "title": "Tamale King’s Village Intervention",
+      "description": "In partnership with King’s Village School, this initiative offers tailored after-school programs aimed at boosting students’ understanding in core subjects. It includes hybrid learning (in-person + online) and early exposure to robotics and coding, delivered via the Steady/X LMS."
+    },
+    "ais": {
+      "title": "AIS Virtual School",
+      "description": "AIS is a fully virtual school initiative designed for learners in Ghana and beyond, providing access to digital classrooms, certified teachers, and performance tracking in a safe and engaging environment."
+    },
+    "jsmq": {
+      "title": "Junior Science & Maths Quiz (JSMQ)",
+      "description": "Steady/X proudly supports JSMQ, celebrating young African minds in STEM. Smart tablets were donated to winners to encourage continued learning."
+    }
+  }
+}

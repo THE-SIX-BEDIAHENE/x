@@ -1,47 +1,81 @@
-// src/App.js
-import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router";
+import React, { useState, useEffect, lazy, Suspense, useRef } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router";
+import { I18nextProvider } from "react-i18next";
+import i18n from "./i18n";
 import "./App.css";
 
-// Pages
-import HomePage from "./pages/HomePage";
-import AboutPage from "./pages/AboutPage";
-import Contactpage from "./pages/ContactPage";
-
 // Components
-import LoadingScreen from "./components/LoadingScreen";
-import Blogspage from "./pages/BlogsPage";
-import ArticlePage from "./pages/ArticlePage";
+import SplashScreen from "./components/SplashScreen";
+import PageLoader from "./components/PageLoader";
+import NotFoundPage from "./pages/NotFoundPage";
+import DashboardPage from "./pages/DashBoardPage";
 
-function App() {
-  const [isLoading, setIsLoading] = useState(true);
+// Lazy-loaded pages
+const HomePage = lazy(() => import("./pages/HomePage"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
+const ArticlePage = lazy(() => import("./pages/ArticlePage"));
+const NewsPage = lazy(() => import("./pages/NewsPage"));
+const ProjectsPage = lazy(() => import("./pages/ProjectsPage"));
 
-  // Simulate loading for development (optional)
+function AppRoutes() {
+  const location = useLocation();
+  const [showSplash, setShowSplash] = useState(false);
+  const [splashReady, setSplashReady] = useState(false);
+  const hasPlayedRef = useRef(false); // Track whether splash has played in session
+
   useEffect(() => {
-    // Remove this in production unless you want a minimum loading time
-    const timer = setTimeout(() => {}, 5000);
-    return () => clearTimeout(timer);
-  }, []);
+    const isInitialLoad =
+      performance.getEntriesByType("navigation")[0]?.type === "navigate" ||
+      performance.getEntriesByType("navigation")[0]?.type === "reload";
+
+    const isFirstVisit = !hasPlayedRef.current;
+
+    if (location.pathname === "/" && isInitialLoad && isFirstVisit) {
+      setShowSplash(true);
+      hasPlayedRef.current = true;
+    } else {
+      setSplashReady(true);
+    }
+  }, [location.pathname]);
 
   const handleVideoEnd = () => {
-    setIsLoading(false);
+    setShowSplash(false);
+    setSplashReady(true);
   };
 
+  if (showSplash) {
+    return <SplashScreen onVideoEnd={handleVideoEnd} />;
+  }
+
+  if (!splashReady && location.pathname === "/") {
+    return null;
+  }
+
   return (
-    <BrowserRouter>
-      {isLoading ? (
-        <LoadingScreen onVideoEnd={handleVideoEnd} />
-      ) : (
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/blogs" element={<Blogspage />} />
-          <Route path="/contact" element={<Contactpage />} />
-          <Route path="/article/:id" element={<ArticlePage />} />
-        </Routes>
-      )}
-    </BrowserRouter>
+    <Suspense fallback={<PageLoader />}>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/news" element={<NewsPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/article/:id" element={<ArticlePage />} />
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/admin" element={<DashboardPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </Suspense>
   );
 }
 
-export default App;
+function AppWrapper() {
+  return (
+    <I18nextProvider i18n={i18n}>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </I18nextProvider>
+  );
+}
+
+export default AppWrapper;

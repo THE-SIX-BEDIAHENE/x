@@ -1,9 +1,9 @@
 // src/components/LoadingScreen.js
 import React from "react";
 
-const LoadingScreen = ({ onVideoEnd }) => {
+const SplashScreen = ({ onVideoEnd }) => {
   return (
-    <div className="flex justify-center items-center w-full h-screen bg-black">
+    <div className="fixed inset-0 flex justify-center items-center bg-black z-50">
       <video
         autoPlay
         muted
@@ -18,4 +18,4 @@ const LoadingScreen = ({ onVideoEnd }) => {
   );
 };
 
-export default LoadingScreen;
+export default SplashScreen;
