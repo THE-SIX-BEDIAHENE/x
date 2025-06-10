@@ -125,7 +125,7 @@ function Navbar() {
         </div>
 
         {/* Mobile menu toggle */}
-        <div className="md:hidden flex items-center gap-3">
+        <div className="md:hidden flex items-center gap-5">
           <LanguageToggle />
           <button onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -135,7 +135,7 @@ function Navbar() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white px-4 py-4 space-y-3 font-bold">
+        <div className="md:hidden bg-white flex justify-center items-center gap-5 px-4 py-4  font-bold">
           {navItems.map((item) => (
             <Link
               key={item.path}

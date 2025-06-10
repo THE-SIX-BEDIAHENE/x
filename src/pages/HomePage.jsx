@@ -91,7 +91,7 @@ const HomePage = () => {
         <div className="w-full md:w-[20%] text-[#2E3E99] text-center text-3xl md:text-4xl font-bold">
           {t("homepage.vision_title")}
         </div>
-        <div className="w-full md:w-[80%] text-left text-xl md:text-4xl font-bold leading-snug">
+        <div className="w-full md:w-[80%] text-center md:text-left text-xl md:text-4xl font-bold leading-snug">
           {t("homepage.vision_description")}
         </div>
       </motion.section>
@@ -108,7 +108,7 @@ const HomePage = () => {
         <div className="w-full md:w-[20%] text-[#2E3E99] text-center text-3xl md:text-4xl font-bold">
           {t("homepage.mission_title")}
         </div>
-        <div className="w-full md:w-[80%] text-left text-xl md:text-4xl font-bold leading-snug">
+        <div className="w-full md:w-[80%] text-center md:text-left text-xl md:text-4xl font-bold leading-snug">
           {t("homepage.mission_description")}
         </div>
       </motion.section>
@@ -130,7 +130,7 @@ const HomePage = () => {
           <div className="text-3xl md:text-4xl text-[#2E3E99] font-medium col-span-2">
             {t("homepage.impact_metrics")}
           </div>
-          <div>
+          <div className="text-center">
             <h1 className="text-6xl md:text-8xl font-bold flex justify-center">
               <CountUpOnView target={1970} duration={1000} />
               <span className="text-red-600 text-4xl md:text-6xl align-super">+</span>
@@ -139,9 +139,9 @@ const HomePage = () => {
               {t("homepage.students_reached")}
             </p>
           </div>
-          <div>
+          <div className="text-center">
             <h1 className="text-6xl md:text-8xl font-bold flex justify-center">
-              <CountUpOnView target={15} duration={1000} />
+              <CountUpOnView target={15} duration={9000} />
               <span className="text-red-600 text-4xl md:text-6xl align-super">+</span>
             </h1>
             <p className="font-medium text-lg md:text-2xl">
@@ -160,7 +160,7 @@ const HomePage = () => {
         variants={fadeInUp}
         transition={{ duration: 0.8 }}
       >
-        <div className="w-full md:w-[90%] rounded-4xl bg-white flex flex-col items-center py-10">
+        <div className="w-full md:w-[90%] rounded-4xl bg-white flex flex-col items-center pt-10">
           <p className="text-[#2E3E99] font-bold text-3xl md:text-4xl mb-6">
             {t("homepage.our_partners")}
           </p>

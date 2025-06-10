@@ -51,7 +51,7 @@ const AboutUsPage = () => {
       <div className="px-10 py-35 md:py-25 space-y-20">
         {/* Hero Section */}
         <MotionSection
-          className="text-center space-y-6 flex flex-col items-center"
+          className="text-center rounded-2xl space-y-6 flex flex-col items-center"
           variants={fadeIn}
           initial="hidden"
           whileInView="visible"
@@ -98,23 +98,27 @@ const AboutUsPage = () => {
         </MotionSection>
 
         {/* Color Identity */}
-        <MotionSection className="text-left max-w-4xl mx-auto" variants={fadeIn} initial="hidden" whileInView="visible">
-          <h2 className="text-4xl font-semibold mb-4 text-[#2E3E99]">{t("about.identity.heading")}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6 text-sm text-white">
-            {["red", "blue", "purple", "white", "black"].map((color) => (
-              <div
-                key={color}
-                className={`p-3 rounded-md flex items-center justify-center text-center min-h-[80px] ${
-                  color === "white"
-                    ? "bg-white text-gray-700 border border-gray-300"
-                    : `bg-${color}-600 text-white`
-                }`}
-              >
-                <span>{t(`about.identity.colors.${color}`)}</span>
-              </div>
-            ))}
-          </div>
-        </MotionSection>
+      <MotionSection className="text-left max-w-4xl mx-auto" variants={fadeIn} initial="hidden" whileInView="visible">
+  <h2 className="text-4xl font-semibold mb-4 text-[#2E3E99]">{t("about.identity.heading")}</h2>
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6 text-sm text-white">
+    {[
+      { color: "red", bgClass: "bg-red-600" },
+      { color: "blue", bgClass: "bg-blue-600" },
+      { color: "purple", bgClass: "bg-purple-600" },
+      { color: "white", bgClass: "bg-white border border-gray-300" },
+      { color: "black", bgClass: "bg-black" }
+    ].map((item) => (
+      <div
+        key={item.color}
+        className={`p-3 rounded-md flex items-center justify-center text-center min-h-[80px] ${
+          item.color === "white" ? "text-gray-700" : "text-white"
+        } ${item.bgClass}`}
+      >
+        <span>{t(`about.identity.colors.${item.color}`)}</span>
+      </div>
+    ))}
+  </div>
+</MotionSection>
 
         {/* Featured Projects */}
         <MotionSection className="max-w-5xl mx-auto" variants={fadeIn} initial="hidden" whileInView="visible">

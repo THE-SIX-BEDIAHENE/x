@@ -34,7 +34,7 @@ const Footer = () => {
         </div>
 
         {/* Middle Section: Nav Links */}
-        <nav className="flex flex-wrap items-center gap-x-10 gap-y-3 md:w-1/5 ml-5 lg:w-2/4 font-semibold text-gray-700 text-base sm:text-lg">
+        <nav className="flex flex-wrap items-center gap-4 md:gap-x-10 gap-y-3 md:w-1/5 ml-5 lg:w-2/4 font-semibold text-gray-700 text-base sm:text-lg">
           {navLinks.map(({ label, path }) => (
             <Link
               key={label}
