@@ -44,8 +44,8 @@ const HomePage = () => {
             }}
           />
           <div className="absolute inset-0 bg-black opacity-20" />
-          <div className="relative z-10 text-center px-4">
-            <motion.h1 className="text-6xl md:text-8xl font-extrabold leading-tight mb-6">
+          <div className="relative z-10 text-center py-4 px-4">
+            <motion.h1 className="text-5xl md:text-8xl font-extrabold leading-tight mb-6">
               {t("homepage.welcome")} <span>STEADY/X</span>
             </motion.h1>
 
