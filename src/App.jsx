@@ -8,7 +8,6 @@ import "./App.css";
 import SplashScreen from "./components/SplashScreen";
 import PageLoader from "./components/PageLoader";
 import NotFoundPage from "./pages/NotFoundPage";
-import DashboardPage from "./pages/DashBoardPage";
 import Login from "./pages/LoginPage";
 
 // Lazy-loaded pages
