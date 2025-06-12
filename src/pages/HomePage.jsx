@@ -114,25 +114,30 @@ const HomePage = () => {
 
       {/* Metrics Section */}
       <motion.section
-        className="flex flex-col-reverse md:flex-row w-full items-center px-6 md:px-10 py-10 gap-10"
+        className="flex flex-col-reverse md:flex-row w-full items-center px-6 md:px-10 py-10 gap-5"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={fadeInUp}
         transition={{ duration: 0.8 }}
       >
-        <div className="w-full md:w-[30%] flex justify-center items-center">
-          <img className="rounded-lg w-full h-auto object-cover" src="https://res.cloudinary.com/dvxyrvgbc/image/upload/f_auto,q_auto/IMG_0023_xucz1r.jpg
-" alt="Impact Metrics Visual" />
+        <div className="w-full md:w-[50%]  flex justify-center items-center">
+          <img
+            className="rounded-lg w-full h-100 object-cover"
+            src="https://res.cloudinary.com/dvxyrvgbc/image/upload/f_auto,q_auto/IMG_0023_xucz1r.jpg"
+            alt="Impact Metrics Visual"
+          />
         </div>
-        <div className="w-full md:w-[60%] grid grid-cols-1 sm:grid-cols-2 gap-6 text-center">
-          <div className="text-3xl md:text-4xl text-[#2E3E99] font-medium col-span-2">
+        <div className="w-full gap-5  md:w-[50%] grid grid-cols-1 md:grid-cols-2 text-center">
+          <div className="text-3xl md:text-4xl text-[#2E3E99] font-bold col-span-2">
             {t("homepage.impact_metrics")}
           </div>
-          <div className="text-center w-50%">
+          <div className="text-center ">
             <h1 className="text-6xl md:text-8xl font-bold flex justify-center">
               <CountUpOnView target={1970} duration={1000} />
-              <span className="text-red-600 text-4xl md:text-6xl align-super">+</span>
+              <span className="text-red-600 text-4xl md:text-6xl align-super">
+                +
+              </span>
             </h1>
             <p className="font-medium text-lg md:text-2xl">
               {t("homepage.students_reached")}
@@ -141,7 +146,9 @@ const HomePage = () => {
           <div className="text-center">
             <h1 className="text-6xl md:text-8xl font-bold flex justify-center">
               <CountUpOnView target={15} duration={9000} />
-              <span className="text-red-600 text-4xl md:text-6xl align-super">+</span>
+              <span className="text-red-600 text-4xl md:text-6xl align-super">
+                +
+              </span>
             </h1>
             <p className="font-medium text-lg md:text-2xl">
               {t("homepage.years_experience")}

@@ -31,7 +31,7 @@ const Contactpage = () => {
             </div>
             <textarea
               placeholder={t("contact.form.message")}
-              className="border border-gray-300 outline-none p-3 rounded-md w-full h-40 resize-none"
+              className="border border-gray-300 outline-none p-3 rounded-md w-full h-50 resize-none"
             ></textarea>
             <button
               type="submit"
@@ -41,13 +41,8 @@ const Contactpage = () => {
             </button>
           </form>
 
-          {/* Image Section */}
+          {/* Video Section */}
           <div>
-            {/* <img
-              src="https://images.unsplash.com/photo-1739289696461-9459f95797ba?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Telecom tower"
-              className="rounded-lg object-cover w-full h-full max-h-[400px]"
-            /> */}
               <video autoPlay loop muted playsInline className="rounded-lg object-cover shadow overflow-hidden border border-gray-300 w-full h-full max-h-[400px]">
               <source src="/Open Splash.mp4" type="video/mp4" />
               Your browser does not support the video tag.

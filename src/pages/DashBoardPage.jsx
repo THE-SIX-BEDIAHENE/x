@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { CiFilter } from "react-icons/ci";
 import { Link } from "react-router";
 import AddItemModal from "../components/AddItemModal";
-import BackButton from "../components/BackButton";
 
 const DashboardPage = () => {
   const [projects, setProjects] = useState([]);
