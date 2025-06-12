@@ -63,7 +63,6 @@ function AppRoutes() {
         <Route path="/article/:id" element={<ArticlePage />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/admin" element={<Login />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
