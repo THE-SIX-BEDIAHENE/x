@@ -9,6 +9,7 @@ import SplashScreen from "./components/SplashScreen";
 import PageLoader from "./components/PageLoader";
 import NotFoundPage from "./pages/NotFoundPage";
 import DashboardPage from "./pages/DashBoardPage";
+import Login from "./pages/LoginPage";
 
 // Lazy-loaded pages
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -61,7 +62,8 @@ function AppRoutes() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/article/:id" element={<ArticlePage />} />
         <Route path="/projects" element={<ProjectsPage />} />
-        <Route path="/admin" element={<DashboardPage />} />
+        <Route path="/admin" element={<Login />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>

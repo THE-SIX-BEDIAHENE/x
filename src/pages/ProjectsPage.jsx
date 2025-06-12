@@ -3,13 +3,6 @@ import Navbar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { useTranslation } from "react-i18next";
 import { FaEye, FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
-import { motion } from "framer-motion";
-
-const pageVariants = {
-  initial: { opacity: 0, y: 30 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  exit: { opacity: 0, y: -30, transition: { duration: 0.4 } },
-};
 
 const ProjectsPage = () => {
   const { t } = useTranslation();
@@ -88,28 +81,18 @@ const ProjectsPage = () => {
   return (
     <>
       <Navbar />
-      <motion.div
-        className="px-4 pt-35 md:py-25 md:px-16 bg-white text-gray-800"
-        variants={pageVariants}
-        initial="initial"
-        animate="animate"
-        exit="exit"
-      >
+      <div className="px-4 pt-35 md:py-25 md:px-16 bg-white text-gray-800">
         <h1 className="text-4xl font-bold text-center mb-12">
           {t("projects.pageTitle")}
         </h1>
 
         <div className="flex flex-col gap-16">
           {projects.map((project, index) => (
-            <motion.div
+            <div
               key={project.title}
               className={`flex flex-col border border-gray-200 md:flex-row items-center gap-6 bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden ${
                 index % 2 === 0 ? "" : "md:flex-row-reverse"
               }`}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
             >
               <div
                 className="md:w-1/2 relative group cursor-pointer overflow-hidden"
@@ -128,7 +111,9 @@ const ProjectsPage = () => {
               </div>
 
               <div className="md:w-1/2 p-6">
-                <h2 className="text-2xl font-semibold mb-2">{project.title}</h2>
+                <h2 className="text-2xl font-semibold mb-2">
+                  {project.title}
+                </h2>
                 <p className="mb-4">{project.description}</p>
                 {project.link && (
                   <a
@@ -141,7 +126,7 @@ const ProjectsPage = () => {
                   </a>
                 )}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
@@ -186,7 +171,7 @@ const ProjectsPage = () => {
             />
           </div>
         )}
-      </motion.div>
+      </div>
       <Footer />
     </>
   );

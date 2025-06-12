@@ -182,5 +182,11 @@
       "title": "Junior Science & Maths Quiz (JSMQ)",
       "description": "Steady/X proudly supports JSMQ, celebrating young African minds in STEM. Smart tablets were donated to winners to encourage continued learning."
     }
-  }
+  },"project": {
+  "pageTitle": "Our Projects",
+  "learnMore": "Learn more",
+  "viewGallery": "View Gallery",
+  "clickToView": "Click to view gallery"
+}
+
 }

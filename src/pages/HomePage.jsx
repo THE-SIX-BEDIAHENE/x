@@ -5,7 +5,6 @@ import Marquee from "../components/Marquee";
 import TestimonialSection from "../components/TestimonialSection";
 import Footer from "../components/Footer";
 import CountUpOnView from "../components/CountUpOnView";
-import img from "/metric.jpg";
 import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 
@@ -130,7 +129,7 @@ const HomePage = () => {
           <div className="text-3xl md:text-4xl text-[#2E3E99] font-medium col-span-2">
             {t("homepage.impact_metrics")}
           </div>
-          <div className="text-center">
+          <div className="text-center w-50%">
             <h1 className="text-6xl md:text-8xl font-bold flex justify-center">
               <CountUpOnView target={1970} duration={1000} />
               <span className="text-red-600 text-4xl md:text-6xl align-super">+</span>

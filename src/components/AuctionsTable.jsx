@@ -1,23 +1,23 @@
 import React from "react";
 import { Link } from "react-router";
-import { apiDeleteAuctionItem } from "../services/auction";
+// import { apiDeleteAuctionItem } from "../services/auction";
 
 const AuctionsTable = ({ products, onRefresh, isOwnerView = true }) => {
   console.log("Products received in AuctionsTable:", products);
-  const handleDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this item?")) {
-      try {
-        console.log("Deleting item with ID:", id); // Add this log
-        console.log("ID type:", typeof id); // Check the type of ID
-        await apiDeleteAuctionItem(id);
-        alert("Item deleted successfully");
-        onRefresh();
-      } catch (error) {
-        console.error("Error deleting item:", error);
-        alert("Failed to delete item. Please try again.");
-      }
-    }
-  };
+  // const handleDelete = async (id) => {
+  //   if (window.confirm("Are you sure you want to delete this item?")) {
+  //     try {
+  //       console.log("Deleting item with ID:", id); // Add this log
+  //       console.log("ID type:", typeof id); // Check the type of ID
+  //       await apiDeleteAuctionItem(id);
+  //       alert("Item deleted successfully");
+  //       onRefresh();
+  //     } catch (error) {
+  //       console.error("Error deleting item:", error);
+  //       alert("Failed to delete item. Please try again.");
+  //     }
+  //   }
+  // };
 
   if (products.length === 0) {
     return (

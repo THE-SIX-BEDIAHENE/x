@@ -8,20 +8,29 @@ const Marquee = () => {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
-        .animate-marquee {
+
+        .marquee-container {
+          overflow-x: auto;
+          white-space: nowrap;
+          width: 100%;
+          -ms-overflow-style: none; /* IE and Edge */
+          scrollbar-width: none; /* Firefox */
+        }
+
+        .marquee-container::-webkit-scrollbar {
+          display: none; /* Chrome, Safari, Opera */
+        }
+
+        .marquee-track {
           display: inline-block;
           white-space: nowrap;
           animation: marquee 25s linear infinite;
         }
-        .marquee-container {
-          overflow: hidden;
-          width: 100%;
-          white-space: nowrap;
-        }
+
         .marquee-content {
           display: inline-block;
-          /* Make sure the duplicated content sits inline */
         }
+
         .marquee-item {
           margin: 0 3rem;
           font-size: 3.25rem;
@@ -30,23 +39,23 @@ const Marquee = () => {
       `}</style>
 
       <div className="marquee-container text-white">
-        <div className="animate-marquee">
+        <div className="marquee-track">
           <div className="marquee-content">
             <img
               src="https://images.seeklogo.com/logo-png/43/2/knust-logo-png_seeklogo-432012.png"
               className="marquee-item"
-              alt="This is a simple marquee"
+              alt="KNUST"
             />
             <img
               src="https://pbs.twimg.com/profile_images/1708769642938765312/D0IerrcH_400x400.jpg"
               className="marquee-item"
-              alt="Scrolling smoothly left"
+              alt="Profile"
               width={200}
             />
             <img
               src="https://www.freepnglogos.com/uploads/samsung-logo-text-png-1.png"
               className="marquee-item"
-              alt="Tailwind + React"
+              alt="Samsung"
               width={250}
             />
           </div>
@@ -54,20 +63,20 @@ const Marquee = () => {
             <img
               src="https://images.seeklogo.com/logo-png/43/2/knust-logo-png_seeklogo-432012.png"
               className="marquee-item"
-              alt="This is a simple marquee"
-            />{" "}
-   <img
+              alt=""
+            />
+            <img
               src="https://pbs.twimg.com/profile_images/1708769642938765312/D0IerrcH_400x400.jpg"
               className="marquee-item"
-              alt="Scrolling smoothly left"
+              alt=""
               width={200}
-            />             <img
+            />
+            <img
               src="https://www.freepnglogos.com/uploads/samsung-logo-text-png-1.png"
               className="marquee-item"
-              alt="Tailwind + React"
+              alt=""
               width={250}
             />
-            <img className="marquee-item" alt="No config file" />
           </div>
         </div>
       </div>
