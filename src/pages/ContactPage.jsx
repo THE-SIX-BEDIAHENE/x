@@ -16,20 +16,28 @@ const Contactpage = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {/* Contact Form */}
-          <form className="space-y-6">
+          <form
+            action="mailto:info@steadyx.org"
+            method="POST"
+            encType="text/plain"
+            className="space-y-6"
+          >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <input
                 type="text"
+                name="Name"
                 placeholder={t("contact.form.name")}
                 className="border border-gray-300 outline-none p-3 rounded-md w-full"
               />
               <input
                 type="email"
+                name="Email"
                 placeholder={t("contact.form.email")}
                 className="border border-gray-300 outline-none p-3 rounded-md w-full"
               />
             </div>
             <textarea
+              name="Message"
               placeholder={t("contact.form.message")}
               className="border border-gray-300 outline-none p-3 rounded-md w-full h-50 resize-none"
             ></textarea>
@@ -43,7 +51,13 @@ const Contactpage = () => {
 
           {/* Video Section */}
           <div>
-              <video autoPlay loop muted playsInline className="rounded-lg object-cover shadow overflow-hidden border border-gray-300 w-full h-full max-h-[400px]">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="rounded-lg object-cover shadow overflow-hidden border border-gray-300 w-full h-full max-h-[400px]"
+            >
               <source src="/Open Splash.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>

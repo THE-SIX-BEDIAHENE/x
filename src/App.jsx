@@ -9,6 +9,8 @@ import SplashScreen from "./components/SplashScreen";
 import PageLoader from "./components/PageLoader";
 import NotFoundPage from "./pages/NotFoundPage";
 import Login from "./pages/LoginPage";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { AuthProvider } from "./context/AuthContext";
 
 // Lazy-loaded pages
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -17,6 +19,7 @@ const ContactPage = lazy(() => import("./pages/ContactPage"));
 const ArticlePage = lazy(() => import("./pages/ArticlePage"));
 const NewsPage = lazy(() => import("./pages/NewsPage"));
 const ProjectsPage = lazy(() => import("./pages/ProjectsPage"));
+const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 
 function AppRoutes() {
   const location = useLocation();
@@ -62,6 +65,14 @@ function AppRoutes() {
         <Route path="/article/:id" element={<ArticlePage />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/admin" element={<Login />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
@@ -71,9 +82,11 @@ function AppRoutes() {
 function AppWrapper() {
   return (
     <I18nextProvider i18n={i18n}>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </AuthProvider>
     </I18nextProvider>
   );
 }

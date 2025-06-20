@@ -1,5 +1,13 @@
 import React from "react";
 import { Link, useNavigate } from "react-router";
+import {
+  FaHome,
+  FaArrowLeft,
+  FaCompass,
+  FaNewspaper,
+  FaProjectDiagram,
+  FaEnvelope,
+} from "react-icons/fa";
 
 const NotFoundPage = () => {
   const navigate = useNavigate();
@@ -8,67 +16,141 @@ const NotFoundPage = () => {
     navigate(-1);
   };
 
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-purple-600 to-purple-800 text-white font-sans p-8">
-      <div className="text-center max-w-2xl bg-white bg-opacity-10 rounded-2xl backdrop-blur-lg p-12 border border-white border-opacity-20 shadow-2xl">
-        
-        {/* 404 Error Code */}
-        <div className="text-8xl font-bold mb-6 bg-gradient-to-r from-red-400 to-yellow-400 bg-clip-text text-transparent drop-shadow-lg">
-          404
-        </div>
-        
-        {/* Title */}
-        <h1 className="text-4xl font-light mb-4">Page Not Found</h1>
-        
-        {/* Description */}
-        <p className="text-xl mb-8 opacity-90 leading-relaxed">
-          Sorry, the page you are looking for doesn't exist or has been moved.
-        </p>
-        
-        {/* Action Buttons */}
-        <div className="flex gap-4 justify-center mb-12 flex-wrap">
-          <Link 
-            to="/" 
-            className="px-8 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105"
-          >
-            Go Home
-          </Link>
-          <button 
-            onClick={goBack} 
-            className="px-8 py-3 bg-white bg-opacity-20 hover:bg-opacity-30 text-white font-semibold rounded-lg border border-white border-opacity-30 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-          >
-            Go Back
-          </button>
-        </div>
+  const navigationLinks = [
+    {
+      to: "/about",
+      label: "About Us",
+      icon: FaCompass,
+      color: "from-blue-400 to-blue-600",
+    },
+    {
+      to: "/projects",
+      label: "Projects",
+      icon: FaProjectDiagram,
+      color: "from-purple-400 to-purple-600",
+    },
+    {
+      to: "/news",
+      label: "News",
+      icon: FaNewspaper,
+      color: "from-green-400 to-green-600",
+    },
+    {
+      to: "/contact",
+      label: "Contact",
+      icon: FaEnvelope,
+      color: "from-pink-400 to-pink-600",
+    },
+  ];
 
-        {/* Navigation Suggestions */}
-        <div className="bg-white bg-opacity-5 border border-white border-opacity-10 rounded-xl p-8">
-          <h3 className="text-xl font-medium mb-6 text-yellow-300">
-            You might be looking for:
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {[
-              { to: "/about", label: "About Us" },
-              { to: "/projects", label: "Projects" },
-              { to: "/news", label: "News" },
-              { to: "/contact", label: "Contact" }
-            ].map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className="block px-4 py-3 bg-white bg-opacity-10 hover:bg-opacity-20 rounded-lg transition-all duration-200 transform hover:translate-x-1 hover:shadow-md border border-white border-opacity-20"
-              >
-                {link.label}
-              </Link>
-            ))}
+  return (
+    <div className="min-h-screen relative overflow-hidden bg-gray-900 text-white font-sans">
+      {/* Animated Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute w-full h-full">
+          {[...Array(50)].map((_, i) => (
+            <div
+              key={i}
+              className="star"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Content Container */}
+      <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
+        <div className="max-w-4xl w-full">
+          <div className="text-center space-y-8">
+            {/* 404 Number */}
+            <div className="relative">
+              <h1 className="text-[12rem] md:text-[16rem] font-bold leading-none tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-indigo-400 to-purple-400 select-none">
+                404
+              </h1>
+              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-3/4 h-1/2 bg-gradient-to-t from-gray-900 to-transparent blur-2xl" />
+            </div>
+
+            {/* Message */}
+            <div className="space-y-4 backdrop-blur-lg bg-white/5 rounded-2xl p-8 border border-white/10">
+              <h2 className="text-3xl md:text-4xl font-light">
+                Oops! Lost in Space
+              </h2>
+              <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+                The page you're looking for has drifted into a black hole. Let's
+                help you find your way back.
+              </p>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
+                <Link
+                  to="/"
+                  className="group flex items-center justify-center gap-2 px-8 py-3 bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25"
+                >
+                  <FaHome className="w-5 h-5 group-hover:animate-bounce" />
+                  <span className="font-medium">Return Home</span>
+                </Link>
+                <button
+                  onClick={goBack}
+                  className="group flex items-center justify-center gap-2 px-8 py-3 bg-gray-800 hover:bg-gray-700 rounded-xl border border-gray-700 transition-all duration-300 transform hover:scale-105"
+                >
+                  <FaArrowLeft className="w-5 h-5 group-hover:animate-pulse" />
+                  <span className="font-medium">Go Back</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Quick Navigation */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto px-4">
+              {navigationLinks.map(({ to, label, icon: Icon, color }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  className="group relative overflow-hidden rounded-xl bg-gray-800 p-4 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/10"
+                >
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-r ${color} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
+                  />
+                  <div className="relative flex items-center gap-3">
+                    <Icon className="w-6 h-6 text-gray-400 group-hover:text-white transition-colors duration-300" />
+                    <span className="font-medium group-hover:text-white transition-colors duration-300">
+                      {label}
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
-        
-        {/* Decorative Elements */}
-        <div className="absolute top-10 left-10 w-20 h-20 bg-white bg-opacity-10 rounded-full blur-xl"></div>
-        <div className="absolute bottom-10 right-10 w-32 h-32 bg-purple-400 bg-opacity-20 rounded-full blur-2xl"></div>
-        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-yellow-400 bg-opacity-10 rounded-full blur-lg"></div>
       </div>
+
+      {/* Add styles for the animated stars */}
+      <style jsx>{`
+        .star {
+          position: absolute;
+          width: 2px;
+          height: 2px;
+          background: white;
+          border-radius: 50%;
+          opacity: 0.3;
+          animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+          0% {
+            opacity: 0.3;
+          }
+          50% {
+            opacity: 0.8;
+          }
+          100% {
+            opacity: 0.3;
+          }
+        }
+      `}</style>
     </div>
   );
 };
