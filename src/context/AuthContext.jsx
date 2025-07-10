@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { dataService } from "../services/dataService";
+import { apiService } from "../services/api";
 
 const AuthContext = createContext();
 
@@ -17,26 +17,30 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     // Check if user is already logged in (from localStorage)
-    const token = dataService.getAuthToken();
+    const token = localStorage.getItem('adminToken');
     if (token) {
+      apiService.setToken(token);
       setIsAuthenticated(true);
     }
     setIsLoading(false);
   }, []);
 
-  const login = (username, password) => {
-    // Simple authentication - in a real app, this would be an API call
-    if (username === "admin" && password === "admin123") {
-      const token = dataService.generateId();
-      dataService.setAuthToken(token);
+  const login = async (username, password) => {
+    try {
+      const data = await apiService.login(username, password);
       setIsAuthenticated(true);
       return { success: true };
+    } catch (error) {
+      console.error('Login error:', error);
+      return { 
+        success: false, 
+        error: error.message || "Invalid credentials. Please try again." 
+      };
     }
-    return { success: false, error: "Invalid credentials" };
   };
 
   const logout = () => {
-    dataService.removeAuthToken();
+    apiService.clearToken();
     setIsAuthenticated(false);
   };
 

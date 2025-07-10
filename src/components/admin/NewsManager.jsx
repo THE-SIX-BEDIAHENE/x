@@ -10,12 +10,14 @@ import {
   FaCalendar,
   FaTag,
 } from "react-icons/fa";
-import { dataService } from "../../services/dataService";
+import { apiService } from "../../services/api";
+import { toast } from 'react-toastify';
 
 const NewsManager = () => {
   const [news, setNews] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingNews, setEditingNews] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     category: "",
@@ -24,16 +26,23 @@ const NewsManager = () => {
     url: "",
   });
 
-  // Load news from localStorage on component mount
+  // Load news from API on component mount
   useEffect(() => {
-    const savedNews = dataService.getNews();
-    setNews(savedNews);
+    fetchNews();
   }, []);
 
-  // Save news to localStorage whenever news change
-  useEffect(() => {
-    dataService.saveNews(news);
-  }, [news]);
+  const fetchNews = async () => {
+    try {
+      setIsLoading(true);
+      const newsData = await apiService.getNews();
+      setNews(newsData);
+    } catch (error) {
+      toast.error('Failed to fetch news articles');
+      console.error('Fetch news error:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleAddNew = () => {
     setEditingNews(null);
@@ -52,50 +61,89 @@ const NewsManager = () => {
     setFormData({
       title: newsItem.title,
       category: newsItem.category || "",
-      description: newsItem.description,
-      image: newsItem.image || "",
+      description: newsItem.content, // API uses content instead of description
+      image: newsItem.imageUrl || "", // API uses imageUrl
       url: newsItem.url || "",
     });
     setIsModalOpen(true);
   };
 
-  const handleDelete = (newsId) => {
+  const handleDelete = async (newsId) => {
     if (window.confirm("Are you sure you want to delete this news article?")) {
-      setNews(news.filter((n) => n.id !== newsId));
+      try {
+        await apiService.deleteNews(newsId);
+        setNews(news.filter((n) => n.id !== newsId)); // API uses id
+        toast.success('News article deleted successfully');
+      } catch (error) {
+        toast.error('Failed to delete news article');
+        console.error('Delete news error:', error);
+      }
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (editingNews) {
-      // Update existing news
-      setNews(
-        news.map((n) => (n.id === editingNews.id ? { ...n, ...formData } : n))
-      );
-    } else {
-      // Add new news
-      const newNewsItem = {
-        id: dataService.generateId(),
-        ...formData,
-        createdAt: new Date().toISOString(),
+    
+    try {
+      const newsData = {
+        title: formData.title,
+        content: formData.description,
+        imageUrl: formData.image,
+        slug: formData.title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-'),
       };
-      setNews([...news, newNewsItem]);
-    }
 
-    setIsModalOpen(false);
+      if (editingNews) {
+        // Update existing news
+        const updatedNews = await apiService.updateNews(editingNews.id, newsData);
+        setNews(news.map((n) => (n.id === editingNews.id ? updatedNews : n)));
+        toast.success('News article updated successfully');
+      } else {
+        // Add new news
+        const newNews = await apiService.createNews(newsData);
+        setNews([...news, newNews]);
+        toast.success('News article created successfully');
+      }
+
+      setIsModalOpen(false);
+      // Fetch fresh data from the server
+      await fetchNews();
+    } catch (error) {
+      toast.error(editingNews ? 'Failed to update news article' : 'Failed to create news article');
+      console.error('Submit news error:', error);
+    }
   };
 
-  const handleImageChange = (e) => {
+  const handleImageChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setFormData({
-        ...formData,
-        image: imageUrl,
-      });
+      const formDataToSend = new FormData();
+      formDataToSend.append("file", file);
+      formDataToSend.append("upload_preset", "steaxy_x_preset"); // Your preset
+  
+      try {
+        const res = await fetch("https://api.cloudinary.com/v1_1/dvxyrvgbc/image/upload", {
+          method: "POST",
+          body: formDataToSend,
+        });
+  
+        const data = await res.json();
+  
+        if (data.secure_url) {
+          setFormData((prev) => ({
+            ...prev,
+            image: data.secure_url, // Cloud-hosted image URL
+          }));
+          toast.success("Image uploaded successfully!");
+        } else {
+          throw new Error("Upload failed");
+        }
+      } catch (error) {
+        toast.error("Failed to upload image");
+        console.error("Image upload error:", error);
+      }
     }
   };
+  
 
   return (
     <div className="space-y-6">
@@ -126,10 +174,10 @@ const NewsManager = () => {
             key={article.id}
             className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200"
           >
-            {article.image && (
+            {article.imageUrl && (
               <div className="relative h-48 bg-gray-200 group">
                 <img
-                  src={article.image}
+                  src={article.imageUrl}
                   alt={article.title}
                   className="w-full h-full object-cover transition-transform duration-200 group-hover:scale-105"
                 />
@@ -152,7 +200,7 @@ const NewsManager = () => {
                 </div>
               </div>
               <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                {article.description}
+                {article.content}
               </p>
               {article.url && (
                 <a

@@ -23,13 +23,17 @@ export default function Login() {
     setError("");
     setIsLoading(true);
 
-    const result = await login(formData.username, formData.password);
-
-    if (!result.success) {
-      setError(result.error);
+    try {
+      const result = await login(formData.username, formData.password);
+      
+      if (!result.success) {
+        setError(result.error);
+      }
+    } catch (error) {
+      setError("An unexpected error occurred. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   };
 
   const handleChange = (e) => {
@@ -129,7 +133,7 @@ export default function Login() {
           </form>
 
           <div className="mt-6 text-center text-sm text-gray-500">
-            <p>Demo credentials: admin / admin123</p>
+            <p>Contact your administrator for credentials</p>
           </div>
         </div>
       </div>

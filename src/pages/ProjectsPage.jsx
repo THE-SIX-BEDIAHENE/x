@@ -3,9 +3,13 @@ import Navbar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { useTranslation } from "react-i18next";
 import { FaEye, FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
+import { apiService } from "../services/api";
+import { toast } from 'react-toastify';
 
 const ProjectsPage = () => {
   const { t } = useTranslation();
+  const [projects, setProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [lightbox, setLightbox] = useState({
     isOpen: false,
     images: [],
@@ -13,44 +17,22 @@ const ProjectsPage = () => {
     title: "",
   });
 
-  const projects = [
-    {
-      title: t("projects.capeCoast.title"),
-      description: t("projects.capeCoast.description"),
-      link: "https://www.graphic.com.gh/news/general-news/10bn-cape-coast-green-city-project-education-module-takes-off.html",
-      images: [
-        "https://res.cloudinary.com/dvxyrvgbc/image/upload/v1749522968/IMG_0890_wdye9y.jpg",
-        "https://res.cloudinary.com/dvxyrvgbc/image/upload/v1749522904/IMG_0850_dzz3gv.jpg",
-      ],
-    },
-    {
-      title: t("projects.kingsVillage.title"),
-      description: t("projects.kingsVillage.description"),
-      images: [
-        "https://res.cloudinary.com/dvxyrvgbc/image/upload/f_auto,q_auto/IMG_0018_1_hexjxk_y08r2d.jpg",
-        "https://res.cloudinary.com/dvxyrvgbc/image/upload/v1749523491/IMG_0128_b9ctwo.jpg",
-        "https://res.cloudinary.com/dvxyrvgbc/image/upload/f_auto,q_auto/IMG_0115_qdn2mb.jpg",
-      ],
-    },
-    {
-      title: t("projects.ais.title"),
-      description: t("projects.ais.description"),
-      images: [
-        "https://res.cloudinary.com/dvxyrvgbc/image/upload/f_auto,q_auto/IMG_20200813_135201_s8inuj.jpg",
-        "https://res.cloudinary.com/dvxyrvgbc/image/upload/v1749526440/IMG_20200813_142408_r6opd4.jpg",
-        "https://res.cloudinary.com/dvxyrvgbc/image/upload/v1749526440/IMG_20200813_135127_vednmj.jpg",
-      ],
-    },
-    {
-      title: t("projects.jsmq.title"),
-      description: t("projects.jsmq.description"),
-      images: [
-        "https://res.cloudinary.com/dvxyrvgbc/image/upload/v1749523513/IMG_0259_jnuuuk.jpg",
-        "https://res.cloudinary.com/dvxyrvgbc/image/upload/v1749523525/IMG_0308_cysnmt.jpg",
-        "https://res.cloudinary.com/dvxyrvgbc/image/upload/v1749523521/IMG_0312_dup9vh.jpg",
-      ],
-    },
-  ];
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  const fetchProjects = async () => {
+    try {
+      setIsLoading(true);
+      const projectsData = await apiService.getProjects();
+      setProjects(projectsData);
+    } catch (error) {
+      toast.error('Failed to load projects');
+      console.error('Fetch projects error:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const openLightbox = (images, index, title) => {
     setLightbox({ isOpen: true, images, current: index, title });
@@ -86,49 +68,55 @@ const ProjectsPage = () => {
           {t("projects.pageTitle")}
         </h1>
 
-        <div className="flex flex-col gap-16">
-          {projects.map((project, index) => (
-            <div
-              key={project.title}
-              className={`flex flex-col border border-gray-200 md:flex-row items-center gap-6 bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden ${
-                index % 2 === 0 ? "" : "md:flex-row-reverse"
-              }`}
-            >
+        {isLoading ? (
+          <div className="flex justify-center items-center min-h-[400px]">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+          </div>
+        ) : (
+          <div className="flex flex-col gap-16">
+            {projects.map((project, index) => (
               <div
-                className="md:w-1/2 relative group cursor-pointer overflow-hidden"
-                onClick={() => openLightbox(project.images, 0, project.title)}
+                key={project._id}
+                className={`flex flex-col border border-gray-200 md:flex-row items-center gap-6 bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden ${
+                  index % 2 === 0 ? "" : "md:flex-row-reverse"
+                }`}
               >
-                <img
-                  src={project.images[0]}
-                  alt={`${project.title} cover`}
-                  className={`w-full h-64 md:h-80 object-cover object-top transition duration-300 group-hover:scale-105 group-hover:brightness-75 ${
-                    index % 2 === 0 ? "rounded-l-xl" : "rounded-r-xl"
-                  }`}
-                />
-                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition">
-                  <FaEye className="text-white text-3xl" />
+                <div
+                  className="md:w-1/2 relative group cursor-pointer overflow-hidden"
+                  onClick={() => openLightbox([project.imageUrl], 0, project.title)}
+                >
+                  <img
+                    src={project.imageUrl}
+                    alt={`${project.title} cover`}
+                    className={`w-full h-64 md:h-80 object-cover object-top transition duration-300 group-hover:scale-105 group-hover:brightness-75 ${
+                      index % 2 === 0 ? "rounded-l-xl" : "rounded-r-xl"
+                    }`}
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition">
+                    <FaEye className="text-white text-3xl" />
+                  </div>
+                </div>
+
+                <div className="md:w-1/2 p-6">
+                  <h2 className="text-2xl font-semibold mb-2">
+                    {project.title}
+                  </h2>
+                  <p className="mb-4">{project.description}</p>
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 underline"
+                    >
+                      {t("projects.learnMore")}
+                    </a>
+                  )}
                 </div>
               </div>
-
-              <div className="md:w-1/2 p-6">
-                <h2 className="text-2xl font-semibold mb-2">
-                  {project.title}
-                </h2>
-                <p className="mb-4">{project.description}</p>
-                {project.link && (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 underline"
-                  >
-                    {t("projects.learnMore")}
-                  </a>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {/* Lightbox */}
         {lightbox.isOpen && (

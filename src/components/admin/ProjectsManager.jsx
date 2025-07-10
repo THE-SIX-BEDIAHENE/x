@@ -11,12 +11,14 @@ import {
   FaLink,
   FaCalendar,
 } from "react-icons/fa";
-import { dataService } from "../../services/dataService";
+import { apiService } from "../../services/api";
+import { toast } from 'react-toastify';
 
 const ProjectsManager = () => {
   const [projects, setProjects] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProject, setEditingProject] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -24,16 +26,23 @@ const ProjectsManager = () => {
     link: "",
   });
 
-  // Load projects from localStorage on component mount
+  // Load projects from API on component mount
   useEffect(() => {
-    const savedProjects = dataService.getProjects();
-    setProjects(savedProjects);
+    fetchProjects();
   }, []);
 
-  // Save projects to localStorage whenever projects change
-  useEffect(() => {
-    dataService.saveProjects(projects);
-  }, [projects]);
+  const fetchProjects = async () => {
+    try {
+      setIsLoading(true);
+      const projectsData = await apiService.getProjects();
+      setProjects(projectsData);
+    } catch (error) {
+      toast.error('Failed to fetch projects');
+      console.error('Fetch projects error:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleAddNew = () => {
     setEditingProject(null);
@@ -51,48 +60,70 @@ const ProjectsManager = () => {
     setFormData({
       title: project.title,
       description: project.description,
-      images: project.images || [],
+      images: project.imageUrl ? [project.imageUrl] : [], // API uses single imageUrl
       link: project.link || "",
     });
     setIsModalOpen(true);
   };
 
-  const handleDelete = (projectId) => {
+  const handleDelete = async (projectId) => {
     if (window.confirm("Are you sure you want to delete this project?")) {
-      setProjects(projects.filter((p) => p.id !== projectId));
+      try {
+        await apiService.deleteProject(projectId);
+        setProjects(projects.filter((p) => p.id !== projectId)); // API uses id
+        toast.success('Project deleted successfully');
+      } catch (error) {
+        toast.error('Failed to delete project');
+        console.error('Delete project error:', error);
+      }
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (editingProject) {
-      // Update existing project
-      setProjects(
-        projects.map((p) =>
-          p.id === editingProject.id ? { ...p, ...formData } : p
-        )
-      );
-    } else {
-      // Add new project
-      const newProject = {
-        id: dataService.generateId(),
-        ...formData,
-        createdAt: new Date().toISOString(),
+    
+    try {
+      const projectData = {
+        title: formData.title,
+        description: formData.description,
+        imageUrl: formData.images[0], // API only supports single image
+        slug: formData.title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-'),
+        link: formData.link,
       };
-      setProjects([...projects, newProject]);
-    }
 
-    setIsModalOpen(false);
+      if (editingProject) {
+        // Update existing project
+        const updatedProject = await apiService.updateProject(editingProject.id, projectData);
+        setProjects(projects.map((p) => (p.id === editingProject.id ? updatedProject : p)));
+        toast.success('Project updated successfully');
+      } else {
+        // Add new project
+        const newProject = await apiService.createProject(projectData);
+        setProjects([...projects, newProject]);
+        toast.success('Project created successfully');
+      }
+
+      setIsModalOpen(false);
+    } catch (error) {
+      toast.error(editingProject ? 'Failed to update project' : 'Failed to create project');
+      console.error('Submit project error:', error);
+    }
   };
 
-  const handleImageChange = (e) => {
+  const handleImageChange = async (e) => {
     const files = Array.from(e.target.files);
-    const imageUrls = files.map((file) => URL.createObjectURL(file));
-    setFormData({
-      ...formData,
-      images: [...formData.images, ...imageUrls],
-    });
+    try {
+      // Here you would typically upload the image to your server or a cloud storage service
+      // For now, we'll just use a local URL for the first image
+      const imageUrls = files.map((file) => URL.createObjectURL(file));
+      setFormData({
+        ...formData,
+        images: [...formData.images, ...imageUrls],
+      });
+    } catch (error) {
+      toast.error('Failed to upload image');
+      console.error('Image upload error:', error);
+    }
   };
 
   const removeImage = (index) => {
@@ -131,16 +162,16 @@ const ProjectsManager = () => {
             key={project.id}
             className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200"
           >
-            {project.images && project.images.length > 0 && (
+            {project.imageUrl && (
               <div className="relative h-48 bg-gray-200 group">
                 <img
-                  src={project.images[0]}
+                  src={project.imageUrl}
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-200 group-hover:scale-105"
                 />
                 <div className="absolute top-2 right-2 bg-black bg-opacity-75 text-white text-xs px-2 py-1 rounded-full">
-                  {project.images.length} image
-                  {project.images.length !== 1 ? "s" : ""}
+                  {project.images && project.images.length > 0 ? project.images.length : 0} image
+                  {project.images && project.images.length !== 1 ? "s" : ""}
                 </div>
               </div>
             )}
